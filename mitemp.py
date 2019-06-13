@@ -33,12 +33,11 @@ def poll(args):
 
     dtnow = dt.now()
     data = { \
-                dtnow.strftime('%Y/%m/%d %H:%M:%S'): { \
-                    'MAC': args.mac, \
-                    'Battery': poller.parameter_value(MI_BATTERY), \
-                    'Temperature': poller.parameter_value(MI_TEMPERATURE), \
-                    'Humidity': poller.parameter_value(MI_HUMIDITY) \
-                } \
+                'time': dtnow.strftime('%Y-%m-%dT%H:%M:%S'): \
+                'mac': args.mac, \
+                'battery': poller.parameter_value(MI_BATTERY), \
+                'temperature': poller.parameter_value(MI_TEMPERATURE), \
+                'humidity': poller.parameter_value(MI_HUMIDITY) \
             }
 
     data = append_json_to_file(data, args.location + os.sep + args.mac + '.json')
