@@ -33,7 +33,7 @@ def poll(args):
 
     dtnow = dt.now()
     data = { \
-                'time': dtnow.strftime('%Y-%m-%dT%H:%M:%S'): \
+                'time': dtnow.strftime('%Y-%m-%dT%H:%M:%S'), \
                 'mac': args.mac, \
                 'battery': poller.parameter_value(MI_BATTERY), \
                 'temperature': poller.parameter_value(MI_TEMPERATURE), \
