@@ -7,6 +7,7 @@ import sys
 import os
 import json
 from datetime import datetime as dt
+import pytz
 
 from btlewrap import available_backends, BluepyBackend, GatttoolBackend, PygattBackend
 from mitemp_bt.mitemp_bt_poller import MiTempBtPoller, \
@@ -31,9 +32,9 @@ def poll(args):
     print("Temperature: {}".format(poller.parameter_value(MI_TEMPERATURE)))
     print("Humidity: {}".format(poller.parameter_value(MI_HUMIDITY)))
 
-    dtnow = dt.now()
+    dtnow = dt.now(pytz.timezone('Japan'))
     data = { \
-                'time': dtnow.strftime('%Y-%m-%dT%H:%M:%S'), \
+                'time': dtnow.strftime('%Y-%m-%dT%H:%M:%S%z'), \
                 'mac': args.mac, \
                 'battery': poller.parameter_value(MI_BATTERY), \
                 'temperature': poller.parameter_value(MI_TEMPERATURE), \
